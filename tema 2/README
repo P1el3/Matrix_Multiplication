@@ -1,0 +1,28 @@
+================================= Tema 2 - ASC =================================
+=========================== Piele Mihai Teodor 331CB ===========================
+
+1. Blas
+- am adaugat in proiect header-ul cblas.h de pe site-ul oficial
+- am linkat biblioteca la execuabil din Makefile
+- folosesc cblas_dcopy() ca sa salvez matricile in matrici auxiliare
+  de care sa ma folosesc mai tarziu si sa nu stric matricile initiale
+- folosesc cblas_dtrmm() ca sa fac inmultirile pentru AxB si ABxAt
+- folosesc cblas_dgemm() ca sa fac Bt * Bt
+- folosesc cblas_daxpy() ca sa fac adunarea finala
+
+2. Neopt
+- aici am decis sa folosesc functii pentru ca a fost primul de care m-am apucat
+- pentru inmultire fac clasica inmultire cu 3 for-uri, doar ca tin cont daca matricea
+  este inferior/superior triunghiulara, plecand cu k-ul de la i respectiv j
+- pentru transpusa matricei parcurg cu 2 for-uri si la sfarsit salvez reversed
+- pentru adunare parcurg cu 2 for-uri si adun fiecare element cu fiecare
+- in my_solver() apelez functiile create pt a efectua operatiile
+
+3. Opt
+- pentru optimizare am folosit in for-uri register atat pentru iteratorii din for-uri
+  cat si pentru pointeri si sume
+- am decis sa am o abordare mai urata si sa nu folosesc functii ca am rescris
+  codul de 3 ori
+- pentru BtxBt ca sa optimiziez, am calculat produsul BxB si rezultatul a fost
+  salvat pe dos
+- opeartiile se fac in ordine, in functie de ce operatie e nevoie sa se faca
